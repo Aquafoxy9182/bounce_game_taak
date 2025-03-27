@@ -1,18 +1,19 @@
 import pygame
 from pygame.locals import * 
+import os 
 
 def mainScreen(window, clock, BLACK, WHITE, WINDOW_WIDTH, WINDOW_HEIGHT, FRAMES_PER_SECOND,game_state):
     
-    background = pygame.image.load("assets/img/beautiful-color-ui-gradients-backgrounds-sexy-blue.png")
+    background = pygame.image.load(os.path.join("Project Bounce","assets","img","beautiful-color-ui-gradients-backgrounds-sexy-blue.png"))
     background = pygame.transform.scale(background, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-    backgroundStars = pygame.image.load("assets/ui/Background_2.png")
+    backgroundStars = pygame.image.load(os.path.join("Project Bounce","assets","ui","Background_2.png"))
     backgroundStars = pygame.transform.scale(backgroundStars, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
-    startButton = pygame.image.load("assets/ui/StartButton.png")
+    startButton = pygame.image.load(os.path.join("Project Bounce","assets","ui","StartButton.png"))
     startButton = pygame.transform.scale(startButton, (300, 100))
 
-    settingButton = pygame.image.load("assets/ui/Settings.png")
+    settingButton = pygame.image.load(os.path.join("Project Bounce","assets","ui","Settings.png"))
     settingButton = pygame.transform.scale(settingButton, (80, 80))
 
 

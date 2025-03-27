@@ -1,4 +1,5 @@
 import pygame
+import os
 
 class Platform:
     def __init__(self, x, y, width, height, color):
@@ -8,7 +9,7 @@ class Platform:
         self.height = height
         self.color = color
         self.rect = pygame.Rect(x, y, width, height)  # Create a Rect for collision detection
-        self.sfx = pygame.mixer.Sound("assets/sounds/bounce.wav")
+        self.sfx = pygame.mixer.Sound(os.path.join("Project Bounce","assets","sounds","bounce.wav"))
 
     def draw(self, window):
         pygame.draw.rect(window, self.color, self.rect)

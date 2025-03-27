@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import sys
+import os
 
 isSecond = 0
 firstTime = True
@@ -42,7 +43,7 @@ def levelTimer(time, window, WINDOW_WIDTH, color, font, timebarBack):
 
 
 def level1(window, clock, ball, coin, colect_sfx, BLACK, WHITE, WINDOW_WIDTH, WINDOW_HEIGHT, FRAMES_PER_SECOND, font, dt,Platform,wall): 
-    timebarBack = pygame.image.load("assets/ui/Bar_layer1.png")
+    timebarBack = pygame.image.load(os.path.join("Project Bounce","assets","ui","Bar_layer1.png"))
     font = pygame.font.Font(None, 36)
     running = True 
     platforms = [

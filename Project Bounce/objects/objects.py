@@ -1,7 +1,8 @@
 #==================================imports=================================#
 import pygame
 import random
-from objects.obsticals import *
+import os
+
 
 #==================================Ball====================================#
 class Ball(pygame.sprite.Sprite):
@@ -16,9 +17,10 @@ class Ball(pygame.sprite.Sprite):
         self.gravity = 800
         self.xVel = 0
         self.yVel = 0
-        self.sprite = pygame.image.load("assets/ui/PlanetPink.png")
+        self.sprite = pygame.image.load(os.path.join("Project Bounce", "assets", "ui", "PlanetPink.png")) #chat gpt
+
         self.sprite = pygame.transform.scale(self.sprite, (self.width, self.height))
-        self.sfx = pygame.mixer.Sound("assets/sounds/bounce.wav")
+        self.sfx = pygame.mixer.Sound(os.path.join("Project Bounce", "assets", "sounds", "bounce.wav"))
 
     def update(self, dt, screen_width, screen_height, walls,platforms):
         self.move(dt)
@@ -42,12 +44,10 @@ class Ball(pygame.sprite.Sprite):
             if (a.x + a.width > b.x and a.x < b.x + b.width and
                 a.y + a.height > b.y and a.y < b.y + b.height):  # General collision check
                 
-                # Determine if the collision is on the left or right side
+                # is collision aan de left of right
                 if a.x + a.width - b.x < b.x + b.width - a.x:
-                    print ("left collision")
                     return "left"
                 elif b.x + b.width - a.x < a.x + a.width - b.x:
-                    print ("right collision")
                     return "right"
             return None
         
@@ -92,7 +92,7 @@ class Coin(pygame.sprite.Sprite):
         self.height = 50
         
         self.points = 0
-        self.sprite = pygame.image.load("assets/img/coin.png")
+        self.sprite = pygame.image.load(os.path.join("Project Bounce","assets","img","coin.png"))
         self.sprite = pygame.transform.scale(self.sprite, (self.width, self.height))
 
     def update(self, ball):
