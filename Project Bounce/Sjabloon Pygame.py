@@ -28,7 +28,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 #==================================sounds==================================#
-colect_sfx = pygame.mixer.Sound("project bounce/assets/sounds/collect.wav")
+colect_sfx = pygame.mixer.Sound(os.path.join("project bounce","assets","sounds","collect.wav"))
 
 #==================================objects=================================#
 ball = Ball(WINDOW_WIDTH, WINDOW_HEIGHT)

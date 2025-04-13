@@ -7,7 +7,7 @@ isSecond = 0
 firstTime = True
 
 
-def levelTimer(time, window, WINDOW_WIDTH, color, font, timebarBack):
+def levelTimer(time, window, WINDOW_WIDTH, color, font, timebarBack,goal,point_score):
     global isSecond, firstTime, prevtime
 
     if firstTime:
@@ -21,20 +21,12 @@ def levelTimer(time, window, WINDOW_WIDTH, color, font, timebarBack):
         isSecond = 0
         prevtime = prevtime - 1
         print(prevtime)
+        print(goal)
         
-        if prevtime <= 0:
+        if prevtime <= 0 and point_score == goal:
             print("Time is up")
             game_state = "game_over"
             return game_state
-
-
-    centerx = WINDOW_WIDTH // 2
-    centery = timebarBack.get_height() // 2
-    width = timebarBack.get_width()
-    height = timebarBack.get_height()
-
-    timebarBackrec = timebarBack.get_rect(centerx=centerx, centery=centery, width=width, height=height)
-    window.blit(timebarBack, timebarBackrec)
 
     time_text = font.render(str(prevtime), True, color)
     timeDisplay = window.blit(time_text, (WINDOW_WIDTH // 2 - time_text.get_width() // 2, 30))
@@ -45,6 +37,12 @@ def levelTimer(time, window, WINDOW_WIDTH, color, font, timebarBack):
 def level1(window, clock, ball, coin, colect_sfx, BLACK, WHITE, WINDOW_WIDTH, WINDOW_HEIGHT, FRAMES_PER_SECOND, font, dt,Platform,wall): 
     timebarBack = pygame.image.load(os.path.join("Project Bounce","assets","ui","Bar_layer1.png"))
     font = pygame.font.Font(None, 36)
+
+    centerx = WINDOW_WIDTH // 2
+    centery = timebarBack.get_height() // 2
+    width = timebarBack.get_width()
+    height = timebarBack.get_height()
+
     running = True 
     platforms = [
         Platform(820, 600, 200, 20, WHITE),  
@@ -77,7 +75,10 @@ def level1(window, clock, ball, coin, colect_sfx, BLACK, WHITE, WINDOW_WIDTH, WI
                 return "start_start"
         # Drawing
         window.fill(BLACK)
-        levelTimer(5, window, WINDOW_WIDTH,BLACK,font, timebarBack)
+        timebarBackrec = timebarBack.get_rect(centerx=centerx, centery=centery, width=width, height=height)
+        window.blit(timebarBack, timebarBackrec)
+
+        levelTimer(10, window, WINDOW_WIDTH,BLACK,font, timebarBack,1,coin.points)
         window.blit(ball.sprite, (ball.x, ball.y))  # Draw objects
         window.blit(coin.sprite, (coin.x, coin.y))
         
@@ -100,7 +101,6 @@ def level1(window, clock, ball, coin, colect_sfx, BLACK, WHITE, WINDOW_WIDTH, WI
         for wall in walls:
             wall.draw(window)
        
-        
         pygame.display.update()
         clock.tick(FRAMES_PER_SECOND)
     

@@ -3,7 +3,6 @@ import pygame
 import random
 import os
 
-
 #==================================Ball====================================#
 class Ball(pygame.sprite.Sprite):
     def __init__(self, screen_width, screen_height):
